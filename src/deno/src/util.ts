@@ -23,17 +23,10 @@ export function removeHtmlTag(data: string): string {
   );
 }
 
-let list: string[] = [];
-export function initIgnoreFiles(dirList: string[]) {
-  let result: string[] = [];
-  for (const dir of dirList) {
-    result = result.concat(getIgnore(dir));
-  }
-  list = result;
-  return result;
-}
-
-function getIgnore(dir: string) {
+export function getIgnore(dir: string) {
+  const ignoreList = new Set(
+    ["/node_modules", "/.git", "/.awcache", "/.vscode"],
+  );
   const path = `${dir}/.gitignore`;
   if (existsSync(path)) {
     try {
@@ -41,17 +34,12 @@ function getIgnore(dir: string) {
       const files = file.split("\n").filter(Boolean).map((item) =>
         item.startsWith("/") ? item : `/${item}`
       );
-      files.push(".git");
-      files.push("public");
-      return files;
+      for (const item of files) {
+        ignoreList.add(item);
+      }
     } catch (err) {
       console.log(err);
     }
   }
-  return ["node_modules", ".git", ".awcache"];
-}
-
-export function isExclude(str: string) {
-  const result = list.some((item) => str.includes(item));
-  return result;
+  return [...ignoreList];
 }
