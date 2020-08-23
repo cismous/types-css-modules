@@ -8,5 +8,7 @@
 
 # 功能
 
-- 默认会忽略 node_modules .git 文件夹，同时忽略.gitignore 所配置的内容
-- 默认监听除忽略内容之外的所有内容
+## 文件监听和编译
+
+- 默认会忽略.gitignore 所配置的和 ["/node_modules", "/.git", "/.awcache", "/.vscode", "public"] 下的文件
+- 程序会自动监听除忽略之外的所有文件夹下的 css 文件
