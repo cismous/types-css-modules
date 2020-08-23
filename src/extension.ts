@@ -16,8 +16,6 @@ export function exit() {
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   const output = vscode.window.createOutputChannel("TypedCssModules");
-  output.show();
-  output.clear();
   output.append("Congratulations, Typed CSS Modules has been initialized!\n\n");
 
   function compile(path: string) {
