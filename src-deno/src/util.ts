@@ -25,15 +25,16 @@ export function removeHtmlTag(data: string): string {
 
 export function getIgnore(dir: string) {
   const ignoreList = new Set(
-    ["/node_modules", "/.git", "/.awcache", "/.vscode"],
+    ["/node_modules", "/.git", "/.awcache", "/.vscode", "public"],
   );
   const path = `${dir}/.gitignore`;
   if (existsSync(path)) {
     try {
       const file = Deno.readTextFileSync(path);
-      const files = file.split("\n").filter(Boolean).map((item) =>
-        item.startsWith("/") ? item : `/${item}`
-      );
+      const files = file
+        .split("\n")
+        .filter(Boolean)
+        .map((item) => (item.startsWith("/") ? item : `/${item}`));
       for (const item of files) {
         ignoreList.add(item);
       }
