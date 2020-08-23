@@ -1,15 +1,20 @@
 {
   "name": "typed-css-modules",
-  "publisher": "yufeng",
   "displayName": "Typed CSS Modules",
-  "description": "为css文件增加type(typescript)",
-  "version": "0.0.2",
+  "description": "分析css文件内容，为id和class增加类型文件，用于typescript文件引用和自动补全。",
+  "version": "0.0.3",
+  "publisher": "yufeng",
+  "author": {
+    "name": "羽风",
+    "email": "cismous@gmail.com",
+    "url": "https://blog.yufeg.com"
+  },
   "engines": {
     "vscode": "^1.48.1"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:cismous/vscode-typed-css-modules.git"
+    "url": "https://github.com/cismous/vscode-typed-css-modules.git"
   },
   "license": "ISC",
   "categories": [
