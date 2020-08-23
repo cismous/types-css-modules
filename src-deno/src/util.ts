@@ -25,7 +25,7 @@ export function removeHtmlTag(data: string): string {
 
 export function getIgnore(dir: string) {
   const ignoreList = new Set(
-    ["/node_modules", "/.git", "/.awcache", "/.vscode", "public"],
+    ["/node_modules", "/.git", "/.awcache", "/.vscode", "/public"],
   );
   const path = `${dir}/.gitignore`;
   if (existsSync(path)) {
