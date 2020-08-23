@@ -23,8 +23,9 @@
     "commands": []
   },
   "scripts": {
+    "deno:bundle": "deno bundle src-deno/src/mod.ts ./out/main.js",
     "vscode:prepublish": "yarn run compile",
-    "compile": "tsc -p src",
+    "compile": "yarn deno:bundle && tsc -p src",
     "lint": "eslint src --ext ts",
     "watch": "tsc -watch -p src",
     "pretest": "yarn run compile && yarn run lint",
