@@ -1,7 +1,7 @@
 // https://www.fing.edu.uy/tecnoinf/mvd/cursos/ria/material/teorico/html-tags-chart.pdf
 // https://www.tutorialrepublic.com/html-reference/html5-tags.php
 
-export const htmlTagList = [
+const htmlTagList = [
   "a",
   "article",
   "aside",
@@ -77,4 +77,9 @@ export const htmlTagList = [
   "u",
   "ul",
   "video",
-];
+].map((tag) => ` ${tag}`);
+
+htmlTagList.push("::before");
+htmlTagList.push("::after");
+
+export { htmlTagList };

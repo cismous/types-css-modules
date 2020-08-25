@@ -10,35 +10,33 @@
   }
 }
 
-.a-a {}
+:global(form .ant-mentions, form textarea.ant-input) {
+  margin: 0;
+}
+
+body {
+  &.hi-ve2es {
+    width: 620px;
+  }
+
+  a,
+  a:hover,
+  a:focus {
+    text-decoration: none;
+  }
+
+  :global(.loading) {}
+
+  :global(.hide) {}
+}
 
 .a-a11 {}
 
-.a_a {}
-
-.a_a1 span {}
-
 .slogan {
   width: 100%;
-  height: 46px;
-  padding-top: 6px;
-  position: absolute;
-  top: 0;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
 
   .list {
     width: 10000px;
-    height: 40px;
-    line-height: 40px;
-    display: flex;
-    flex-wrap: nowrap;
-    top: 6px;
-    left: 0;
-    position: absolute;
-    margin-left: 100%;
 
     &.scroll {
       animation-duration: 180s;
@@ -47,50 +45,10 @@
     }
 
     .item {
-      background: rgba(0, 0, 0, 0.28);
-      border-radius: 20px;
-      margin-right: 120px;
-      display: flex;
-      align-items: center;
-
       .img {
-        width: 30px;
-        height: 30px;
-        margin: 5px 14px 5px 5px;
-        background-size: contain;
-        background-position: 50% 50%;
-
         &.bob {
           background-image: url(../images/bob.png);
         }
-
-        &.company {
-          background-image: url(../images/slogan-company.png);
-        }
-
-        &.person {
-          background-image: url(../images/slogan-person.png);
-        }
-
-        &.dept {
-          background-image: url(../images/slogan-department.png);
-        }
-      }
-
-      .clap {
-        position: relative;
-        top: -4px;
-        width: 33px;
-        height: 33px;
-        margin: 0 5px 10px;
-        background-size: contain;
-        background-position: 50% 50%;
-        background-image: url(../images/clap.png);
-      }
-
-      .text {
-        paddinog-right: 18px;
-        word-break: keep-all;
       }
     }
   }
