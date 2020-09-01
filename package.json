@@ -2,7 +2,7 @@
   "name": "typed-css-modules",
   "displayName": "Typed CSS Modules",
   "description": "分析css文件内容，为id和class增加类型文件，用于typescript文件引用和自动补全。",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publisher": "yufeng",
   "author": {
     "name": "羽风",
