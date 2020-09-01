@@ -1,15 +1,12 @@
-import {
-  camelCase,
-  removeHtmlTag,
-} from "./util.ts";
+import { camelCase, removeHtmlTag } from "./util.ts";
 
 function analyzeCss(file: string) {
   let data = Deno.readTextFileSync(file);
   data = data.replaceAll(/:global\((.*?)\)/g, "");
   data = data.replaceAll(/(\r\n|\n|\r| ( )+)/g, "");
   data = removeHtmlTag(data);
-  const list0 = data.match(/[\.#][a-zA-Z][a-zA-Z0-9-_]*[ ]?[\.]/g) ?? [];
-  const list1 = data.match(/[\.#][a-zA-Z][a-zA-Z0-9-_]*[ ]?[,{]/g) ?? [];
+  const list0 = data.match(/[\.#][a-zA-Z][a-zA-Z0-9-_]*[ ]?[,{]/g) ?? [];
+  const list1 = data.match(/[\.#][a-zA-Z][a-zA-Z0-9-_]*[ ]?[\.]/g) ?? [];
   const list2 = [...list0, ...list1].map((item) => {
     item = item.slice(1); // 去掉首字符
     if (item.endsWith(",") || item.endsWith("{") || item.endsWith(".")) {
@@ -19,8 +16,8 @@ function analyzeCss(file: string) {
   });
   if (!list2.length) return [];
 
-  const res = [...new Set(list2)].map((item) =>
-    `  readonly "${item}": string;`
+  const res = [...new Set(list2)].map(
+    (item) => `  readonly "${item}": string;`,
   );
   res.unshift("declare const styles: {");
   res.push("};");
@@ -42,9 +39,13 @@ function compileFile(file: string) {
   if (!Deno.args.includes("-s") && !Deno.args.includes("--silent")) {
     const date = new Date();
     const infoDate = `["INFO" ${date.getFullYear()}-${
-      humanNum(date.getMonth())
+      humanNum(
+        date.getMonth(),
+      )
     }-${humanNum(date.getDay())} ${humanNum(date.getHours())}:${
-      humanNum(date.getMinutes())
+      humanNum(
+        date.getMinutes(),
+      )
     }:${humanNum(date.getSeconds())}]`;
     console.log(infoDate, "Wrote", file + ".d.ts");
   }

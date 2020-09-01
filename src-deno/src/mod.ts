@@ -29,9 +29,7 @@ class CompileFile {
         files.push(item);
       } else if (isDirectory) {
         if (this.isExclude(item)) continue;
-        files = files.concat(
-          this.scanCssFiles(item),
-        );
+        files = files.concat(this.scanCssFiles(item));
       }
     }
     return files;
@@ -44,33 +42,38 @@ class CompileFile {
   async watchCss(dir: string) {
     const watcher = Deno.watchFs(dir);
     for await (const event of watcher) {
-      const paths = event.paths.filter((path) => path.endsWith(".css")).filter(
-        (item) => {
+      const paths = event.paths
+        .filter((path) => path.endsWith(".css"))
+        .filter((item) => {
           const exist = existsSync(item);
           if (this.isExclude(item)) return false;
           if (!exist) {
             try {
               Deno.removeSync(item + ".d.ts"); // 删除无用的类型文件([name].d.ts)
-            } catch {}
+            } catch (err) {
+              console.log(err);
+            }
           }
           return exist;
-        },
-      );
+        });
       compileFiles(paths);
     }
   }
 }
 
 function getWatchDir() {
-  return Deno.args.map((item) => {
-    return item.startsWith("/") ? item : resolve(join(Deno.cwd(), item));
-  }).filter((item) => {
-    try {
-      return Deno.lstatSync(item).isDirectory;
-    } catch {
-      return false;
-    }
-  });
+  return Deno.args
+    .map((item) => {
+      return item.startsWith("/") ? item : resolve(join(Deno.cwd(), item));
+    })
+    .filter((item) => {
+      try {
+        return Deno.lstatSync(item).isDirectory;
+      } catch (err) {
+        console.log(err);
+        return false;
+      }
+    });
 }
 
 function main() {
